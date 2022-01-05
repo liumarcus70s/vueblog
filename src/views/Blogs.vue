@@ -8,7 +8,7 @@
         <el-card>
           <h4>
             <router-link :to="{name: 'BlogDetail', params: {blogId: blog.id}}">
-            {{blog.title}}}
+            {{blog.title}}
             </router-link>
           </h4>
           <p>{{blog.description}}</p>
@@ -18,11 +18,12 @@
 
     <el-pagination class="mpage"
         background
+                   v-if="total !=0"
         layout="prev, pager, next"
-                   :current-page="currentPage"
-                   :page-size="pageSize"
-                   :total="total"
-                    @current-change=page
+        :current-page.sync="currentPage"
+        :page-size="pageSize"
+        :total="total"
+        @current-change=page
     >
     </el-pagination>
 
@@ -47,15 +48,17 @@ export default {
     page(currentPage){
       const _this = this
       _this.$axios.get("/blogs?currentPage=" + currentPage).then(res =>{
-        console.log(res)
+        // console.log(res)
         _this.blogs = res.data.data.records
-        _this.currentPage = res.data.data.currentPage
+        _this.currentPage = res.data.data.current
         _this.total = res.data.data.total
-        _this.pageSize = res.data.data.pageSize
+        _this.pageSize = res.data.data.size
+        // console.log(_this.pageSize)
       })
     }
   },
   created(){
+
     this.page(1)
   }
 }

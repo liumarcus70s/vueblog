@@ -42,11 +42,12 @@ export default {
         // console.log(headers)
         _this.$store.commit("REMOVE_INFO")
         _this.$router.push("/login")
-        console.log("headers")
+        // console.log("headers")
       })
     }
 
   },created(){
+    // console.log("created")
     if(this.$store.getters.getUser.username){
       this.user.username = this.$store.getters.getUser.username
       this.user.avatar = this.$store.getters.getUser.avatar

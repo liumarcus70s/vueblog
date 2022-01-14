@@ -11,9 +11,10 @@ axios.interceptors.request.use(config =>{
 
 axios.interceptors.response.use(response =>{
     let res = response.data;
+    console.log(res.code)
     console.log("===========================")
     console.log(res)
-
+    if(res.code){
     if(res.code === 200){
         return response
     } else{
@@ -21,7 +22,8 @@ axios.interceptors.response.use(response =>{
 
         return Promise.reject(response.data.msg)
 
-    }
+    }}
+    else return res
 },
     error =>{
         console.log(error)

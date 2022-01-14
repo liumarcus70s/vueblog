@@ -4,6 +4,7 @@ import Login from '../views/Login.vue'
 import Blogs from '../views/Blogs.vue'
 import BlogDetail from '../views/BlogDetail.vue'
 import BlogEdit from '../views/BlogEdit.vue'
+import image from '../views/image.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,11 @@ const routes = [
     meta: {
       requireAuth: true
     }
+  },
+  {
+    path: '/image',
+    name: 'image',
+    component: image
   }
 
 ]

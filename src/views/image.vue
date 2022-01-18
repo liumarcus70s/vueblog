@@ -46,10 +46,18 @@ export default {
       }
       return window.btoa(binary)
     },
+    markFace(){
+      const _this = this
+      _this.$axios.post("/extractMaxFace").then(res =>{
+        // console.log(res)
+        _this.imgCode = res
+        // console.log(_this.pageSize)
+      })
+    }
 
   },created(){
     // console.log("created")
-    this.getImgCode()
+    this.markFace()
   }
 }
 </script>

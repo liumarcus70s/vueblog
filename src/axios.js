@@ -11,18 +11,16 @@ axios.interceptors.request.use(config =>{
 
 axios.interceptors.response.use(response =>{
     let res = response.data;
-    console.log(res.code)
     console.log("===========================")
     console.log(res)
     if(res.code){
-    if(res.code === 200){
-        return response
-    } else{
-        Element.Message.error('错了哦，这是一条错误消息', {duration: 3*1000})
-
-        return Promise.reject(response.data.msg)
-
-    }}
+        if(res.code === 200){
+            return response
+        } else{
+            Element.Message.error('错了哦，这是一条错误消息', {duration: 3*1000})
+            return Promise.reject(response.data.msg)
+        }
+    }
     else return res
 },
     error =>{
